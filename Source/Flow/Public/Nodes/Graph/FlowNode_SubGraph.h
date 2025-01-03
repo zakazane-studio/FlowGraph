@@ -23,10 +23,11 @@ public:
 	static FFlowPin StartPin;
 	static FFlowPin FinishPin;
 
-private:
+public:
 	UPROPERTY(EditAnywhere, Category = "Graph")
 	TSoftObjectPtr<UFlowAsset> Asset;
-
+	
+private:
 	/*
 	 * Allow to create instance of the same Flow Asset as the asset containing this node
 	 * Enabling it may cause an infinite loop, if graph would keep creating copies of itself
