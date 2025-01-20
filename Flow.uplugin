@@ -15,9 +15,9 @@
 	"Modules" :
 	[
 		{
-			"Name": "Flow",
-			"Type": "Runtime",
-			"LoadingPhase": "PreDefault"
+			"Name" : "Flow",
+			"Type" : "Runtime",
+			"LoadingPhase" : "PreDefault"
 		},
 		{
 			"Name" : "FlowDebugger",
