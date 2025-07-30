@@ -858,6 +858,10 @@ void UFlowNodeBase::LogError(FString Message, const EFlowOnScreenMessageType OnS
 					StatsSubsystem->AddDisplayDelegate([WeakThis = TWeakObjectPtr<const UFlowNodeBase>(this), Message](FText& OutText, FLinearColor& OutColor)
 					{
 						const UFlowNodeBase* ThisPtr = WeakThis.Get();
+						if (!ensureMsgf(IsValid(ThisPtr), TEXT("Invalid flow node base when trying to display error message: %s"), *Message))
+						{
+							return false;
+						}
 
 						const UFlowNode* SelfOrOwner = ThisPtr->GetFlowNodeSelfOrOwner();
 						if (ThisPtr && SelfOrOwner && SelfOrOwner->GetActivationState() != EFlowNodeState::NeverActivated)
