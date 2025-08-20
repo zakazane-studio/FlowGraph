@@ -54,7 +54,7 @@ public:
 /**
  *
  */
-UCLASS(Config = Editor, defaultconfig, meta = (DisplayName = "Flow Graph"))
+UCLASS(Config = FlowGraphEditorSettings, defaultconfig, meta = (DisplayName = "Flow Graph"))
 class FLOWEDITOR_API UFlowGraphSettings : public UDeveloperSettings
 {
 	GENERATED_UCLASS_BODY()
