@@ -4,6 +4,7 @@
 
 #include "SGraphNode.h"
 #include "KismetPins/SGraphPinExec.h"
+#include "Runtime/Launch/Resources/Version.h"
 
 #include "Graph/Nodes/FlowGraphNode.h"
 

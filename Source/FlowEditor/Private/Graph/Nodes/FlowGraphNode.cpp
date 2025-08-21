@@ -31,6 +31,8 @@
 #include "Textures/SlateIcon.h"
 #include "ToolMenuSection.h"
 #include "Editor/Transactor.h"
+#include "Subsystems/AssetEditorSubsystem.h"
+#include "Editor/EditorEngine.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(FlowGraphNode)
 

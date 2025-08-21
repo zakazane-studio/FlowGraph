@@ -36,6 +36,7 @@
 #include "Widgets/SOverlay.h"
 #include "Widgets/SToolTip.h"
 #include "Widgets/Text/SInlineEditableTextBlock.h"
+#include "Runtime/Launch/Resources/Version.h"
 
 #define LOCTEXT_NAMESPACE "SFlowGraphNode"
 
