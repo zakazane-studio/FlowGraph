@@ -69,7 +69,10 @@ void FFlowEditorModule::StartupModule()
 	RegisterAssets();
 
 	// register visual utilities
-	FEdGraphUtilities::RegisterVisualPinConnectionFactory(MakeShareable(new FFlowGraphConnectionDrawingPolicyFactory));
+
+	// Zakazane: Removed registering connection factory, because we're using our own that inherits from this one and adds our requirements on top of it
+	// FEdGraphUtilities::RegisterVisualPinConnectionFactory(MakeShareable(new FFlowGraphConnectionDrawingPolicyFactory));
+	
 	FEdGraphUtilities::RegisterVisualPinFactory(MakeShareable(new FFlowGraphPinFactory()));
 	FEdGraphUtilities::RegisterVisualPinFactory(MakeShareable(new FFlowInputPinHandleFactory()));
 	FEdGraphUtilities::RegisterVisualPinFactory(MakeShareable(new FFlowOutputPinHandleFactory()));
