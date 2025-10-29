@@ -1811,7 +1811,9 @@ bool UFlowGraphNode::TryUpdateNodePins() const
 
 	bool bPinsChanged = false;
 
-	if (!CheckPinsMatch(RequiredNodeInputPins, ExistingNodeInputPins))
+	// !!! Zakazane Edit: Skipping pins reconstruction in the case of nodes where users can add Input pins
+	// Without this check, duplicating such nodes would make all of its pins invalid, which is not a desirable behavior in any case
+	if (!CanUserAddInput() && !CheckPinsMatch(RequiredNodeInputPins, ExistingNodeInputPins))
 	{
 		FlowNodeInstance->Modify();
 
@@ -1821,7 +1823,9 @@ bool UFlowGraphNode::TryUpdateNodePins() const
 		bPinsChanged = true;
 	}
 
-	if (!CheckPinsMatch(RequiredNodeOutputPins, ExistingNodeOutputPins))
+	// !!! Zakazane Edit: Skipping pins reconstruction in the case of nodes where users can add Output pins
+	// Without this check, duplicating such nodes would make all of its pins invalid, which is not a desirable behavior in any case
+	if (!CanUserAddOutput() && !CheckPinsMatch(RequiredNodeOutputPins, ExistingNodeOutputPins))
 	{
 		FlowNodeInstance->Modify();
 
