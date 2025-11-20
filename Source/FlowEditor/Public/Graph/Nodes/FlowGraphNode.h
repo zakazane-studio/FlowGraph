@@ -18,7 +18,9 @@ class UFlowNode;
 class UFlowAsset;
 class FFlowMessageLog;
 
-DECLARE_DELEGATE(FFlowGraphNodeEvent);
+// !!! Zakazane Edit !!!  
+//		Changed event to MULTICAST, because there was a weird case where Node Widget that was going to be trashed anyway would replace binding on that event
+DECLARE_MULTICAST_DELEGATE(FFlowGraphNodeEvent);
 
 /**
  * Graph representation of the Flow Node

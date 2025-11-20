@@ -144,6 +144,11 @@ protected:
 	TArray<TSharedPtr<SGraphNode>> SubNodes;
 	TSharedPtr<SVerticalBox> SubNodeBox;
 	TSharedPtr<STextBlock> ConfigTextBlock;
+	
+	// !!! Zakazane Edit !!!  
+	//		Added delegate handles as a side effect of making FlowGraphNode events to MULTICAST they need to be removed from it with delegate handles
+	FDelegateHandle OnSignalModeChangedDelegateHandle;
+	FDelegateHandle OnReconstructNodeCompletedDelegateHandle;
 
 public:
 	static const FLinearColor UnselectedNodeTint;

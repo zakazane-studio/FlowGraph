@@ -351,7 +351,7 @@ void UFlowGraphNode::ReconstructNode()
 
 	// This ensures the graph editor 'Refresh' button still rebuilds all the graph widgets even if the FlowGraphNode has nothing to update
 	// Ideally we could get rid of the 'Refresh' button, but I think it will keep being useful, esp. for users making rough custom widgets
-	(void)OnReconstructNodeCompleted.ExecuteIfBound();
+	(void)OnReconstructNodeCompleted.Broadcast();
 
 	bIsReconstructingNode = false;
 }
@@ -1150,7 +1150,7 @@ void UFlowGraphNode::SetSignalMode(const EFlowSignalMode Mode)
 	if (UFlowNode* FlowNode = Cast<UFlowNode>(NodeInstance))
 	{
 		FlowNode->SignalMode = Mode;
-		OnSignalModeChanged.ExecuteIfBound();
+		OnSignalModeChanged.Broadcast();
 	}
 }
 

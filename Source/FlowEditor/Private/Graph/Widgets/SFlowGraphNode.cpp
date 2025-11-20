@@ -62,8 +62,11 @@ void SFlowGraphNode::Construct(const FArguments& InArgs, UFlowGraphNode* InNode)
 	DebuggerSubsystem = GEngine->GetEngineSubsystem<UFlowDebuggerSubsystem>();
 
 	check(FlowGraphNode);
-	FlowGraphNode->OnSignalModeChanged.BindRaw(this, &SFlowGraphNode::UpdateGraphNode);
-	FlowGraphNode->OnReconstructNodeCompleted.BindRaw(this, &SFlowGraphNode::UpdateGraphNode);
+	
+	// !!! Zakazane Edit !!!  
+	//		Changed from BindRaw to AddSP, so we don't crash the editor in case invalid Node Widget is bound to delegates
+	OnSignalModeChangedDelegateHandle = FlowGraphNode->OnSignalModeChanged.AddSP(this, &SFlowGraphNode::UpdateGraphNode);
+	OnReconstructNodeCompletedDelegateHandle = FlowGraphNode->OnReconstructNodeCompleted.AddSP(this, &SFlowGraphNode::UpdateGraphNode);
 
 	SetCursor(EMouseCursor::CardinalCross);
 	UpdateGraphNode();
@@ -74,8 +77,11 @@ void SFlowGraphNode::Construct(const FArguments& InArgs, UFlowGraphNode* InNode)
 SFlowGraphNode::~SFlowGraphNode()
 {
 	check(FlowGraphNode);
-	FlowGraphNode->OnSignalModeChanged.Unbind();
-	FlowGraphNode->OnReconstructNodeCompleted.Unbind();
+	
+	// !!! Zakazane Edit !!!  
+	//		Added delegate handles as a side effect of making FlowGraphNode events to MULTICAST they need to be removed from it with delegate handles
+	FlowGraphNode->OnSignalModeChanged.Remove(OnSignalModeChangedDelegateHandle);
+	FlowGraphNode->OnReconstructNodeCompleted.Remove(OnReconstructNodeCompletedDelegateHandle);
 
 	FlowGraphNode = nullptr;
 }
