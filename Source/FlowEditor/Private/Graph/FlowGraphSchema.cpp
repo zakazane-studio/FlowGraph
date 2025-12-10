@@ -794,6 +794,14 @@ void UFlowGraphSchema::BreakPinLinks(UEdGraphPin& TargetPin, bool bSendsNodeNoti
 	{
 		UFlowGraphNode* OtherOwningFlowGraphNode = Cast<UFlowGraphNode>(OtherPin->GetOwningNodeUnchecked());
 		
+		// !!! Zakazane Edit !!! 
+		//		Checking validity of the node owned by OtherPin 
+		//		because in the case of our custom Multiline node, we destroy that pin before this is called
+		if (OtherOwningFlowGraphNode == nullptr)
+		{
+			continue;
+		}
+		
 		if (OtherPin->bOrphanedPin)
 		{
 			// this calls NotifyNodeChanged()
